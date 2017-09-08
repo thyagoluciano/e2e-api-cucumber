@@ -1,0 +1,42 @@
+{
+  "name": "e2e-api-cucumber",
+  "version": "1.0.0",
+  "description": "Collection of utility functions and a gherkin framework for REST API integration testing based on cucumber.js",
+  "keywords": [
+    "cucumber",
+    "integration",
+    "rest",
+    "api",
+    "e2e"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Thyago Luciano",
+    "email": "thyagoluciano@gmail.com",
+    "homepage": "https://www.thyagoluciano.com.br"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thyagoluciano/e2e-api-cucumber.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "JSONPath": "^0.11.2",
+    "cucumber": "^3.0.1",
+    "prettyjson": "^1.2.1",
+    "request": "^2.81.0",
+    "xmldom": "^0.1.27",
+    "xpath.js": "^1.0.7"
+  },
+  "devDependencies": {
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.3.0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "jshint.options": {
+    "esversion": 6
+  },
+  "vsicons.presets.angular": false,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true
+}
