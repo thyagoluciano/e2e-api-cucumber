@@ -1,6 +1,6 @@
 {
   "name": "e2e-api-cucumber",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Collection of utility functions and a gherkin framework for REST API integration testing based on cucumber.js",
   "keywords": [
     "cucumber",

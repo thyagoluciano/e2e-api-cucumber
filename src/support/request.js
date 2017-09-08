@@ -3,7 +3,7 @@ const util = require('util');
 
 class Request {
     static init(domain) {
-        this.domain = domain || 'http://localhos';
+        this.domain = domain || 'http://localhost';
         this.headers = {};
         this.cookies = [];
         this.httpResponse = {};
@@ -112,4 +112,4 @@ class Request {
     }
 }
 
-module.exports = Request.init();
+module.exports = Request;

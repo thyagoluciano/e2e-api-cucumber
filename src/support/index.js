@@ -1,12 +1,12 @@
 
-const request = require('./request');
-const utils = require('./utils');
-const storage = require('./storage');
-const assert = require('./assert');
+const Request = require('./request');
+const Utils = require('./utils');
+const Storage = require('./storage');
+const Assert = require('./assert');
 
 module.exports = {
-    Request: request,
-    Utils: utils,
-    Storage: storage,
-    Assert: assert,
+    Request,
+    Utils,
+    Storage,
+    Assert,
 };

@@ -1,5 +1,4 @@
-const { Request, Utils, Storage } = require('../support');
-
+const { Request, Storage, Utils } = require('../support/index');
 const { defineSupportCode } = require('cucumber');
 
 defineSupportCode(({ When }) => {
@@ -18,7 +17,6 @@ defineSupportCode(({ When }) => {
             if (error) callback(new Error(error));
             callback();
         });
-        callback();
     });
 
     When(/^I PUT (.*)$/, (resourceParam, callback) => {
@@ -28,7 +26,6 @@ defineSupportCode(({ When }) => {
             if (error) callback(new Error(error));
             callback();
         });
-        callback();
     });
 
     When(/^I DELETE (.*)$/, (resourceParam, callback) => {
@@ -38,7 +35,6 @@ defineSupportCode(({ When }) => {
             if (error) callback(new Error(error));
             callback();
         });
-        callback();
     });
 
     When(/^I PATCH (.*)$/, (resourceParam, callback) => {

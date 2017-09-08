@@ -1,7 +1,12 @@
-const step = require('./src/step');
-const support = require('./src/support');
+const { given, when, then } = require('./src/step/index');
+const { Assert, Request, Storage, Utils } = require('./src/support/index');
 
 module.exports = {
-    step,
-    support,
+    given,
+    when,
+    then,
+    Assert,
+    Request,
+    Storage,
+    Utils,
 };

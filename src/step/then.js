@@ -1,4 +1,4 @@
-const { Assert, Request, Storage, Utils } = require('../support');
+const { Assert, Request, Storage, Utils } = require('../support/index');
 const { defineSupportCode } = require('cucumber');
 
 defineSupportCode(({ Then }) => {
@@ -18,8 +18,8 @@ defineSupportCode(({ Then }) => {
     });
 
     Then(/^response code should be (.*)$/, (responseCode, callback) => {
-        // TODO: Falta implementar
-        callback();
+        const assertion = Assert.assertResponseCode(responseCode);
+        Assert.callbackWithAssertion(callback, assertion);
     });
 
     Then(/^response code should not be (.*)$/, (responseCode, callback) => {
