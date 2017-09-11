@@ -1,29 +1,35 @@
 {
-  "name": "e2e-api-cucumber",
-  "version": "0.0.2",
-  "description": "Collection of utility functions and a gherkin framework for REST API integration testing based on cucumber.js",
-  "keywords": [
-    "cucumber",
-    "integration",
-    "rest",
-    "api",
-    "e2e"
-  ],
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_from": "e2e-api-cucumber@0.0.2",
+  "_id": "e2e-api-cucumber@0.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-5do8BCRvU55L0cSN/uOHMHSbQfg4C4bF6XmonzMV+KhwDEb/oAwRZh8f6K9bsCziq9QURCvYGU/uP6RZBvGvBA==",
+  "_location": "/e2e-api-cucumber",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "e2e-api-cucumber@0.0.2",
+    "name": "e2e-api-cucumber",
+    "escapedName": "e2e-api-cucumber",
+    "rawSpec": "0.0.2",
+    "saveSpec": null,
+    "fetchSpec": "0.0.2"
   },
-  "keywords": [],
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/e2e-api-cucumber/-/e2e-api-cucumber-0.0.2.tgz",
+  "_shasum": "6e082d3a63469cbf5752c140bf69a481f6635a82",
+  "_spec": "e2e-api-cucumber@0.0.2",
+  "_where": "/Volumes/DATA/Development/zup/labs/copia-e2e-tests",
   "author": {
     "name": "Thyago Luciano",
-    "email": "thyagoluciano@gmail.com",
-    "homepage": "https://www.thyagoluciano.com.br"
+    "email": "thyagoluciano@gmail.com"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/thyagoluciano/e2e-api-cucumber.git"
+  "bugs": {
+    "url": "https://github.com/thyagoluciano/e2e-api-cucumber/issues"
   },
-  "license": "MIT",
+  "bundleDependencies": false,
   "dependencies": {
     "JSONPath": "^0.11.2",
     "cucumber": "^3.0.1",
@@ -32,11 +38,26 @@
     "xmldom": "^0.1.27",
     "xpath.js": "^1.0.7"
   },
+  "deprecated": false,
+  "description": "Collection of utility functions and a gherkin framework for REST API integration testing based on cucumber.js",
   "devDependencies": {
     "eslint": "^4.6.1",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.3.0"
-  }
+  },
+  "homepage": "https://github.com/thyagoluciano/e2e-api-cucumber#readme",
+  "keywords": [],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "e2e-api-cucumber",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thyagoluciano/e2e-api-cucumber.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.2"
 }

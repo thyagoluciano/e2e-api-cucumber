@@ -1,4 +1,5 @@
 const request = require('request');
+const isJson = require('is-json');
 const util = require('util');
 
 class Request {
@@ -17,6 +18,12 @@ class Request {
 
     static setDomain(domain) {
         this.domain = domain;
+        return this;
+    }
+
+    static setDebug(debug) {
+        this.debug = debug;
+        return this;
     }
 
     static setRequestHeader(name, value) {

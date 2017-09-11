@@ -3,20 +3,12 @@ const Dom = require('xmldom').DOMParser;
 const jsonPath = require('JSONPath');
 const select = require('xpath.js');
 const prettyJson = require('prettyjson');
+const isJson = require('is-json');
 const fs = require('fs');
 
 const xmlAttributeNodeType = 2;
 
 class Utils {
-    static isJsonString(str) {
-        try {
-            JSON.parse(str);
-            return true;
-        } catch (e) {
-            return false;
-        }
-    }
-
     static getContentType(content) {
         try {
             JSON.parse(content);
@@ -43,15 +35,22 @@ class Utils {
         });
     }
 
-    static replaceVariables(resource, object, variableChar = '`') {
-        try {
-            const matchReg = new RegExp(`${variableChar}(.*?)${variableChar}`, 'g');
-            const replaceReg = new RegExp(`${variableChar}`, 'g');
-            const name = resource.match(matchReg).map(val => val.replace(replaceReg, ''))[0];
-            return this.isJsonString(object[name]) ? resource.replace(matchReg, JSON.stringify(object[name])) : resource.replace(matchReg, object[name]);
-        } catch (e) {
-            return resource;
+    static replaceVariables(resourceParam, object, variableChar = '`') {
+        let resource = resourceParam;
+        const matchReg = new RegExp(`${variableChar}(.*?)${variableChar}`, 'g');
+        const replaceReg = new RegExp(`${variableChar}`, 'g');
+        const variaveis = (isJson(JSON.stringify(resource))) ? JSON.stringify(resource).match(matchReg) : resource.match(matchReg);
+    
+        if (variaveis) {
+            variaveis.map((value) => {
+                const name = value.replace(replaceReg, '');
+                const matchRegValue = new RegExp(`${variableChar}${name}${variableChar}`);
+                resource = (isJson(JSON.stringify(resource))) ?
+                    JSON.stringify(resource).replace(matchRegValue, object[name]) :
+                    resource.replace(matchRegValue, object[name]);
+            });
         }
+        return resource;
     }
 
     static evaluatePath(pathParam, content) {

@@ -1,10 +1,11 @@
 const Request = require('./request');
 const Utils = require('./utils');
+const Storage = require('./storage');
 
 class Assert {
-    static callbackWithAssertion(done, assertion) {
-        if (assertion.success) done();
-        done(Utils.prettyPrintJson(assertion));
+    static callbackWithAssertion(callback, assertion) {
+        if (assertion.success) callback();
+        callback(Utils.prettyPrintJson(assertion));
     }
 
     static getAssertionResult(success, expected, actual) {
@@ -18,6 +19,11 @@ class Assert {
                 body: Request.getResponseObject().body,
             },
         };
+    }
+
+    static assertResponseValue(valuePath, value) {
+        const success = (valuePath === value);
+        return this.getAssertionResult(success, valuePath, value);
     }
 
     static assertResponseCode(responseCode) {

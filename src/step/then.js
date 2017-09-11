@@ -47,10 +47,18 @@ defineSupportCode(({ Then }) => {
         callback();
     });
 
-    Then(/^response body path (.*) should be (((?!of type).*))$/, (path, value, callback) => {
-        // TODO: Falta implementar
+    Then(/^response body path (.*) should be (.*)$/, (pathParam, valueParam, callback) => {
+        const path = Utils.replaceVariables(valueParam, Storage.getGlobalVariable());
+        const value = Utils.evaluatePath(pathParam, Request.getResponseObject().body);
+        const assertion = Assert.assertResponseValue(path, value);
+        Assert.callbackWithAssertion(callback, assertion);
         callback();
     });
+
+    // Then(/^response body path (.*) should be (((?!of type).*))$/, (path, value, callback) => {
+    //     // TODO: Falta implementar
+    //     callback();
+    // });
 
     Then(/^response body path (.*) should not be (((?!of type).+))$/, (path, value, callback) => {
         // TODO: Falta implementar

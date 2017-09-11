@@ -1,4 +1,4 @@
-const { Utils } = require('../support/index');
+const { Request, Storage, Utils } = require('../support/index');
 const { defineSupportCode } = require('cucumber');
 
 defineSupportCode(({ Given }) => {
@@ -14,15 +14,15 @@ defineSupportCode(({ Given }) => {
 
     Given(/^I set headers to$/, (headers, callback) => {
         headers.hashes().forEach((h) => {
-            const value = Utils.replaceVariables(h.value, this.storage.getGlobalVariable());
-            this.request.setRequestHeader(h.name, value);
+            const value = Utils.replaceVariables(h.value, Storage.getGlobalVariable());
+            Request.setRequestHeader(h.name, value);
         });
         callback();
     });
 
     Given(/^I set body to (.*)$/, (bodyValue, callback) => {
-        const value = this.storage.getGlobalVariableByName(bodyValue);
-        this.request.setRequestBody(JSON.stringify(value));
+        const value = Utils.replaceVariables(bodyValue, Storage.getGlobalVariable());
+        Request.setRequestBody(value);
         callback();
     });
 
@@ -32,9 +32,9 @@ defineSupportCode(({ Given }) => {
     });
 
     Given(/^I pipe contents of file (.*) as (.*) in global scope$/, (file, name, done) => {
-        this.utils.pipeFileContentsToRequestBody(file, (err, data) => {
+        Utils.pipeFileContentsToRequestBody(file, (err, data) => {
             if (err) throw err;
-            this.storage.setGlobalVariable(name, data);
+            Storage.setGlobalVariable(name, data);
             done();
         });
     });
