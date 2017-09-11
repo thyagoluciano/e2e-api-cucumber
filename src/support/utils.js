@@ -5,6 +5,7 @@ const select = require('xpath.js');
 const prettyJson = require('prettyjson');
 const isJson = require('is-json');
 const fs = require('fs');
+const Storage = require('./storage');
 
 const xmlAttributeNodeType = 2;
 
@@ -35,7 +36,7 @@ class Utils {
         });
     }
 
-    static replaceVariables(resourceParam, object, variableChar = '`') {
+    static replaceVariables(resourceParam, object = Storage.getGlobalVariable(), variableChar = '`') {
         let resource = resourceParam;
         const matchReg = new RegExp(`${variableChar}(.*?)${variableChar}`, 'g');
         const replaceReg = new RegExp(`${variableChar}`, 'g');
@@ -83,6 +84,10 @@ class Utils {
 
     static pipeFileContentsToRequestBody(fileParam, done) {
         fs.readFile(fileParam, 'utf8', done);
+    }
+
+    static base64Encode(str) {
+        return new Buffer(str).toString('base64');
     }
 }
 

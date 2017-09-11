@@ -49,11 +49,8 @@ class Request {
         return this;
     }
 
-    static setQueryParameters(queryParameters) {
-        queryParameters.forEach((element) => {
-            this.queryParameters[element.parameter] = element.value;
-        }, this);
-
+    static setQueryParameters(parameter, value) {
+        this.queryParameters[parameter] = value;
         return this;
     }
 

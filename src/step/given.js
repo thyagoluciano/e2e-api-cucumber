@@ -3,54 +3,75 @@ const { defineSupportCode } = require('cucumber');
 
 defineSupportCode(({ Given }) => {
     Given(/^I set (.*) header to (.*)$/, (headerName, headerValue, callback) => {
-        // TODO: Falta implementar
+        Request.setRequestHeader(
+            Utils.replaceVariables(headerName),
+            Utils.replaceVariables(headerValue)
+        );
         callback();
     });
 
     Given(/^I set cookie to (.*)$/, (cookie, callback) => {
-        // TODO: Falta implementar
+        Request.setCookie(cookie);
         callback();
     });
 
     Given(/^I set headers to$/, (headers, callback) => {
         headers.hashes().forEach((h) => {
-            const value = Utils.replaceVariables(h.value, Storage.getGlobalVariable());
-            Request.setRequestHeader(h.name, value);
+            Request.setRequestHeader(
+                Utils.replaceVariables(h.name),
+                Utils.replaceVariables(h.value)
+            );
         });
         callback();
     });
 
     Given(/^I set body to (.*)$/, (bodyValue, callback) => {
-        const value = Utils.replaceVariables(bodyValue, Storage.getGlobalVariable());
-        Request.setRequestBody(value);
+        Request.setRequestBody(Utils.replaceVariables(bodyValue));
         callback();
     });
 
     Given(/^I pipe contents of file (.*) to body$/, (file, callback) => {
-        // TODO: Falta implementar
+        Utils.pipeFileContentsToRequestBody(file, (err, data) => {
+            if (err) throw err;
+            Request.setRequestBody = Utils.replaceVariables(data);
+            done();
+        });
         callback();
     });
 
     Given(/^I pipe contents of file (.*) as (.*) in global scope$/, (file, name, done) => {
         Utils.pipeFileContentsToRequestBody(file, (err, data) => {
             if (err) throw err;
-            Storage.setGlobalVariable(name, data);
+            Storage.setGlobalVariable(name, Utils.replaceVariables(data));
             done();
         });
     });
 
-    Given(/^I set query parameters to$/, (queryParameters, callback) => {
-        // TODO: Falta implementar
+    Given(/^I set query parameters to$/, (table, callback) => {
+        queryParameters.hashes().forEach((t) => {
+            Request.setQueryParameters(
+                Utils.replaceVariables(t.name),
+                Utils.replaceVariables(t.value)
+            );
+        });
         callback();
     });
 
-    Given(/^I set form parameters to$/, (formParameters, callback) => {
-        // TODO: Falta implementar
+    Given(/^I set form parameters to$/, (table, callback) => {
+        table.hashes().forEach((t) => {
+            Request.setQueryParameters(
+                Utils.replaceVariables(t.name),
+                Utils.replaceVariables(t.value)
+            );
+        });
         callback();
     });
 
     Given(/^I have basic authentication credentials (.*) and (.*)$/, (username, password, callback) => {
-        // TODO: Falta implementar
+        const user = Utils.replaceVariables(username);
+        const pass = Utils.replaceVariables(password);
+        const base64encode = Utils.base64Encode(`${user}:${pass}`);
+        Request.setRequestHeader('Authorization', `Basic ${base64encode}`)
         callback();
     });
 
