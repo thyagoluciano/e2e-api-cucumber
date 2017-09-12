@@ -2,6 +2,17 @@ const { Assert, Request, Storage, Utils } = require('../support/index');
 const { defineSupportCode } = require('cucumber');
 
 defineSupportCode(({ Then }) => {
+
+    Then(/^response code should be (.*)$/, (responseCode, callback) => {
+        const assertion = Assert.assertResponseCode(responseCode);
+        Assert.callbackWithAssertion(callback, assertion);
+    });
+
+    Then(/^response code should not be (.*)$/, (responseCode, callback) => {
+        const assertion = Assert.assertResponseCode(responseCode);
+        Assert.callbackWithAssertion(callback, assertion);
+    });
+
     Then(/^response header (.*) should exist$/, (header, callback) => {
         Utils.replaceVariables(header)
         const success = typeof Response.getResponseObject().headers[
@@ -18,21 +29,6 @@ defineSupportCode(({ Then }) => {
         ] != 'undefined';
 
         Assert.callbackWithAssertion(callback, Assert.getAssertionResult(success, true, false));
-    });
-
-    Then(/^response body should be valid (xml|json)$/, (contentType, callback) => {
-        const assertion = Assert.assertResponseBodyContentType(contentType);
-        Assert.callbackWithAssertion(callback, assertion);
-    });
-
-    Then(/^response code should be (.*)$/, (responseCode, callback) => {
-        const assertion = Assert.assertResponseCode(responseCode);
-        Assert.callbackWithAssertion(callback, assertion);
-    });
-
-    Then(/^response code should not be (.*)$/, (responseCode, callback) => {
-        const assertion = Assert.assertResponseCode(responseCode);
-        Assert.callbackWithAssertion(callback, assertion);
     });
 
     Then(/^response header (.*) should be (.*)$/, (header, expression, callback) => {
@@ -55,6 +51,11 @@ defineSupportCode(({ Then }) => {
         );
     });
 
+    Then(/^response body should be valid (xml|json)$/, (contentType, callback) => {
+        const assertion = Assert.assertResponseBodyContentType(contentType);
+        Assert.callbackWithAssertion(callback, assertion);
+    });
+
     Then(/^response body should contain (.*)$/, (expression, callback) => {
         Assert.callbackWithAssertion(
             callback, 
@@ -73,23 +74,15 @@ defineSupportCode(({ Then }) => {
         );
     });
 
-    Then(/^response body path (.*) should be (.*)$/, (pathParam, valueParam, callback) => {
-        const path = Utils.replaceVariables(valueParam, Storage.getGlobalVariable());
-        const value = Utils.evaluatePath(pathParam, Request.getResponseObject().body);
-        const assertion = Assert.assertResponseValue(path, value);
-        Assert.callbackWithAssertion(callback, assertion);
-        callback();
+    Then(/^response body path (.*) should be (((?!of type).*))$/, (path, value, callback) => {
+        Assert.callbackWithAssertion(
+            callback,
+            Assert.assertPathInResponseBodyMatchesExpression(
+                Utils.replaceVariables(path),
+                Utils.replaceVariables(value)
+            )
+        );
     });
-
-    // Then(/^response body path (.*) should be (((?!of type).*))$/, (path, value, callback) => {
-    //     Assert.callbackWithAssertion(
-    //         callback,
-    //         Assert.assertPathInResponseBodyMatchesExpression(
-    //             Utils.replaceVariables(path),
-    //             Utils.replaceVariables(value)
-    //         )
-    //     );
-    // });
 
     Then(/^response body path (.*) should not be (((?!of type).+))$/, (path, value, callback) => {
         Assert.callbackWithAssertion(

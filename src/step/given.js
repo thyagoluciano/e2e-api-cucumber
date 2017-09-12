@@ -83,9 +83,9 @@ defineSupportCode(({ Given }) => {
         callback();
     });
 
-    Given(/^I'll wait (.*) seconds$/, (time, done) => {
+    Given(/^I'll wait (.*) seconds$/, (seconds, done) => {
         setTimeout(() => {
             done();
-        }, time);
+        }, (seconds*1000));
     });
 });
