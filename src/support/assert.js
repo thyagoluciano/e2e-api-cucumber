@@ -37,6 +37,26 @@ class Assert {
         const success = (realContentType === contentType);
         return this.getAssertionResult(success, contentType, realContentType);
     }
+
+    static assertHeaderValue(header, expression) {
+        const realHeaderValue = Request.getResponseObject().headers[header.toLowerCase()];
+        const regex = new RegExp(expression);
+        const success = (regex.test(realHeaderValue));
+        return this.getAssertionResult(success, expression, realHeaderValue, this);
+    }
+
+    static assertResponseBodyContainsExpression(expression) {
+        const regex = new RegExp(expression);
+        const success = regex.test(Request.getResponseObject().body);
+        return this.getAssertionResult(success, expression, null, this);
+    }
+
+    static assertPathInResponseBodyMatchesExpression(path, regexp) {
+        const regExpObject = new RegExp(regexp);
+        const evalValue = Utils.evaluatePath(path, Request.getResponseObject().body);
+        const success = regExpObject.test(evalValue);
+        return this.getAssertionResult(success, regexp, evalValue, this);
+    }
 }
 
 module.exports = Assert;

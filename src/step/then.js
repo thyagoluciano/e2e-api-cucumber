@@ -3,13 +3,21 @@ const { defineSupportCode } = require('cucumber');
 
 defineSupportCode(({ Then }) => {
     Then(/^response header (.*) should exist$/, (header, callback) => {
-        // TODO: Falta implementar
-        callback();
+        Utils.replaceVariables(header)
+        const success = typeof Response.getResponseObject().headers[
+            Utils.replaceVariables(header).toLowerCase()
+        ] == 'undefined';
+
+        Assert.callbackWithAssertion(callback, Assert.getAssertionResult(success, true, false));
     });
 
     Then(/^response header (.*) should not exist$/, (header, callback) => {
-        // TODO: Falta implementar
-        callback();
+        Utils.replaceVariables(header)
+        const success = typeof Response.getResponseObject().headers[
+            Utils.replaceVariables(header).toLowerCase()
+        ] != 'undefined';
+
+        Assert.callbackWithAssertion(callback, Assert.getAssertionResult(success, true, false));
     });
 
     Then(/^response body should be valid (xml|json)$/, (contentType, callback) => {
@@ -28,41 +36,69 @@ defineSupportCode(({ Then }) => {
     });
 
     Then(/^response header (.*) should be (.*)$/, (header, expression, callback) => {
-        // TODO: Falta implementar
-        callback();
+        Assert.callbackWithAssertion(
+            callback, 
+            Assert.assertHeaderValue(
+                Utils.replaceVariables(header),
+                Utils.replaceVariables(expression)
+            )
+        );
     });
 
     Then(/^response header (.*) should not be (.*)$/, (header, expression, callback) => {
-        // TODO: Falta implementar
-        callback();
+        Assert.callbackWithAssertion(
+            callback, 
+            !Assert.assertHeaderValue(
+                Utils.replaceVariables(header),
+                Utils.replaceVariables(expression)
+            )
+        );
     });
 
     Then(/^response body should contain (.*)$/, (expression, callback) => {
-        // TODO: Falta implementar
-        callback();
+        Assert.callbackWithAssertion(
+            callback, 
+            Assert.assertResponseBodyContainsExpression(
+                Utils.replaceVariables(expression)
+            )
+        );
     });
 
     Then(/^response body should not contain (.*)$/, (expression, callback) => {
-        // TODO: Falta implementar
-        callback();
+        Assert.callbackWithAssertion(
+            callback, 
+            !Assert.assertResponseBodyContainsExpression(
+                Utils.replaceVariables(expression)
+            )
+        );
     });
 
-    Then(/^response body path (.*) should be (.*)$/, (pathParam, valueParam, callback) => {
-        const path = Utils.replaceVariables(valueParam, Storage.getGlobalVariable());
-        const value = Utils.evaluatePath(pathParam, Request.getResponseObject().body);
-        const assertion = Assert.assertResponseValue(path, value);
-        Assert.callbackWithAssertion(callback, assertion);
-        callback();
-    });
-
-    // Then(/^response body path (.*) should be (((?!of type).*))$/, (path, value, callback) => {
-    //     // TODO: Falta implementar
+    // Then(/^response body path (.*) should be (.*)$/, (pathParam, valueParam, callback) => {
+    //     const path = Utils.replaceVariables(valueParam, Storage.getGlobalVariable());
+    //     const value = Utils.evaluatePath(pathParam, Request.getResponseObject().body);
+    //     const assertion = Assert.assertResponseValue(path, value);
+    //     Assert.callbackWithAssertion(callback, assertion);
     //     callback();
     // });
 
+    Then(/^response body path (.*) should be (((?!of type).*))$/, (path, value, callback) => {
+        Assert.callbackWithAssertion(
+            callback,
+            Assert.assertPathInResponseBodyMatchesExpression(
+                Utils.replaceVariables(path),
+                Utils.replaceVariables(value)
+            )
+        );
+    });
+
     Then(/^response body path (.*) should not be (((?!of type).+))$/, (path, value, callback) => {
-        // TODO: Falta implementar
-        callback();
+        Assert.callbackWithAssertion(
+            callback,
+            !Assert.assertPathInResponseBodyMatchesExpression(
+                Utils.replaceVariables(path),
+                Utils.replaceVariables(value)
+            )
+        );
     });
 
     Then(/^response body path (.*) should be of type array$/, (path, callback) => {

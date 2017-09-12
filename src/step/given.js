@@ -75,8 +75,11 @@ defineSupportCode(({ Given }) => {
         callback();
     });
 
-    Given(/^I store the raw value (.*) as (.*) in scenario scope$/, (value, variable, callback) => {
-        // TODO: Falta implementar
+    Given(/^I store the raw value (.*) as (.*) in global scope$/, (value, name, callback) => {
+        Storage.setGlobalVariable(
+            Utils.replaceVariables(name),
+            Utils.replaceVariables(value)
+        );
         callback();
     });
 

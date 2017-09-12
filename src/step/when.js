@@ -50,7 +50,8 @@ defineSupportCode(({ When }) => {
         });
     });
 
-    When(/^I set bearer token$/, (callback) => {
-
+    When(/^I set bearer token$/, (accessToken, callback) => {
+        Request.setRequestHeader('Authorization', `Bearer ${accessToken}`);
+        callback();
     });
 });
