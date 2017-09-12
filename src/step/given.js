@@ -42,7 +42,7 @@ defineSupportCode(({ Given }) => {
     Given(/^I pipe contents of file (.*) as (.*) in global scope$/, (file, name, done) => {
         Utils.pipeFileContentsToRequestBody(file, (err, data) => {
             if (err) throw err;
-            Storage.setGlobalVariable(name, Utils.replaceVariables(data));
+            Storage.setGlobalVariable(name, data);
             done();
         });
     });

@@ -73,23 +73,23 @@ defineSupportCode(({ Then }) => {
         );
     });
 
-    // Then(/^response body path (.*) should be (.*)$/, (pathParam, valueParam, callback) => {
-    //     const path = Utils.replaceVariables(valueParam, Storage.getGlobalVariable());
-    //     const value = Utils.evaluatePath(pathParam, Request.getResponseObject().body);
-    //     const assertion = Assert.assertResponseValue(path, value);
-    //     Assert.callbackWithAssertion(callback, assertion);
-    //     callback();
-    // });
-
-    Then(/^response body path (.*) should be (((?!of type).*))$/, (path, value, callback) => {
-        Assert.callbackWithAssertion(
-            callback,
-            Assert.assertPathInResponseBodyMatchesExpression(
-                Utils.replaceVariables(path),
-                Utils.replaceVariables(value)
-            )
-        );
+    Then(/^response body path (.*) should be (.*)$/, (pathParam, valueParam, callback) => {
+        const path = Utils.replaceVariables(valueParam, Storage.getGlobalVariable());
+        const value = Utils.evaluatePath(pathParam, Request.getResponseObject().body);
+        const assertion = Assert.assertResponseValue(path, value);
+        Assert.callbackWithAssertion(callback, assertion);
+        callback();
     });
+
+    // Then(/^response body path (.*) should be (((?!of type).*))$/, (path, value, callback) => {
+    //     Assert.callbackWithAssertion(
+    //         callback,
+    //         Assert.assertPathInResponseBodyMatchesExpression(
+    //             Utils.replaceVariables(path),
+    //             Utils.replaceVariables(value)
+    //         )
+    //     );
+    // });
 
     Then(/^response body path (.*) should not be (((?!of type).+))$/, (path, value, callback) => {
         Assert.callbackWithAssertion(
@@ -132,8 +132,8 @@ defineSupportCode(({ Then }) => {
     });
 
     Then(/^I store the value of body path (.*) as (.*) in global scope$/, (pathParam, variableName, callback) => {
-        const path = Utils.replaceVariables(pathParam, Storage.getGlobalVariable());
-        const value = Utils.evaluatePath(path, Request.getResponseObject().body);
+        // const path = Utils.replaceVariables(pathParam, Storage.getGlobalVariable());
+        const value = Utils.evaluatePath(pathParam, Request.getResponseObject().body);
         Storage.setGlobalVariable(variableName, value);
         callback();
     });
