@@ -1,6 +1,5 @@
 const Request = require('./request');
 const Utils = require('./utils');
-const Storage = require('./storage');
 
 class Assert {
     static callbackWithAssertion(callback, assertion) {

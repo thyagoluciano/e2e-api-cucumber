@@ -34,21 +34,20 @@ defineSupportCode(({ Given }) => {
         Utils.pipeFileContentsToRequestBody(file, (err, data) => {
             if (err) throw err;
             Request.setRequestBody = Utils.replaceVariables(data);
-            done();
+            callback();
         });
-        callback();
     });
 
-    Given(/^I pipe contents of file (.*) as (.*) in global scope$/, (file, name, done) => {
+    Given(/^I pipe contents of file (.*) as (.*) in global scope$/, (file, name, callback) => {
         Utils.pipeFileContentsToRequestBody(file, (err, data) => {
             if (err) throw err;
             Storage.setGlobalVariable(name, data);
-            done();
+            callback();
         });
     });
 
     Given(/^I set query parameters to$/, (table, callback) => {
-        queryParameters.hashes().forEach((t) => {
+        table.hashes().forEach((t) => {
             Request.setQueryParameters(
                 Utils.replaceVariables(t.name),
                 Utils.replaceVariables(t.value)
@@ -71,7 +70,7 @@ defineSupportCode(({ Given }) => {
         const user = Utils.replaceVariables(username);
         const pass = Utils.replaceVariables(password);
         const base64encode = Utils.base64Encode(`${user}:${pass}`);
-        Request.setRequestHeader('Authorization', `Basic ${base64encode}`)
+        Request.setRequestHeader('Authorization', `Basic ${base64encode}`);
         callback();
     });
 
@@ -83,9 +82,9 @@ defineSupportCode(({ Given }) => {
         callback();
     });
 
-    Given(/^I'll wait (.*) seconds$/, (seconds, done) => {
+    Given(/^I'll wait (.*) seconds$/, (seconds, callback) => {
         setTimeout(() => {
-            done();
-        }, (seconds*1000));
+            callback();
+        }, (seconds * 1000));
     });
 });

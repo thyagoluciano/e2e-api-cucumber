@@ -2,7 +2,6 @@ const { Assert, Request, Storage, Utils } = require('../support/index');
 const { defineSupportCode } = require('cucumber');
 
 defineSupportCode(({ Then }) => {
-
     Then(/^response code should be (.*)$/, (responseCode, callback) => {
         const assertion = Assert.assertResponseCode(responseCode);
         Assert.callbackWithAssertion(callback, assertion);
@@ -14,26 +13,24 @@ defineSupportCode(({ Then }) => {
     });
 
     Then(/^response header (.*) should exist$/, (header, callback) => {
-        Utils.replaceVariables(header)
-        const success = typeof Response.getResponseObject().headers[
+        const success = typeof Request.getResponseObject().headers[
             Utils.replaceVariables(header).toLowerCase()
-        ] == 'undefined';
+        ] === 'undefined';
 
         Assert.callbackWithAssertion(callback, Assert.getAssertionResult(success, true, false));
     });
 
     Then(/^response header (.*) should not exist$/, (header, callback) => {
-        Utils.replaceVariables(header)
-        const success = typeof Response.getResponseObject().headers[
+        const success = typeof Request.getResponseObject().headers[
             Utils.replaceVariables(header).toLowerCase()
-        ] != 'undefined';
+        ] !== 'undefined';
 
         Assert.callbackWithAssertion(callback, Assert.getAssertionResult(success, true, false));
     });
 
     Then(/^response header (.*) should be (.*)$/, (header, expression, callback) => {
         Assert.callbackWithAssertion(
-            callback, 
+            callback,
             Assert.assertHeaderValue(
                 Utils.replaceVariables(header),
                 Utils.replaceVariables(expression)
@@ -43,7 +40,7 @@ defineSupportCode(({ Then }) => {
 
     Then(/^response header (.*) should not be (.*)$/, (header, expression, callback) => {
         Assert.callbackWithAssertion(
-            callback, 
+            callback,
             !Assert.assertHeaderValue(
                 Utils.replaceVariables(header),
                 Utils.replaceVariables(expression)
@@ -58,7 +55,7 @@ defineSupportCode(({ Then }) => {
 
     Then(/^response body should contain (.*)$/, (expression, callback) => {
         Assert.callbackWithAssertion(
-            callback, 
+            callback,
             Assert.assertResponseBodyContainsExpression(
                 Utils.replaceVariables(expression)
             )
@@ -67,7 +64,7 @@ defineSupportCode(({ Then }) => {
 
     Then(/^response body should not contain (.*)$/, (expression, callback) => {
         Assert.callbackWithAssertion(
-            callback, 
+            callback,
             !Assert.assertResponseBodyContainsExpression(
                 Utils.replaceVariables(expression)
             )
@@ -125,7 +122,6 @@ defineSupportCode(({ Then }) => {
     });
 
     Then(/^I store the value of body path (.*) as (.*) in global scope$/, (pathParam, variableName, callback) => {
-        // const path = Utils.replaceVariables(pathParam, Storage.getGlobalVariable());
         const value = Utils.evaluatePath(pathParam, Request.getResponseObject().body);
         Storage.setGlobalVariable(variableName, value);
         callback();

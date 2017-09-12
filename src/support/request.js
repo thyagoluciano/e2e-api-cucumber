@@ -1,5 +1,4 @@
 const request = require('request');
-const isJson = require('is-json');
 const util = require('util');
 
 class Request {
@@ -49,16 +48,13 @@ class Request {
         return this;
     }
 
-    static setQueryParameters(parameter, value) {
-        this.queryParameters[parameter] = value;
+    static setQueryParameters(name, value) {
+        this.queryParameters[name] = value;
         return this;
     }
 
-    static setFormParameters(formParameters) {
-        formParameters.forEach((element) => {
-            this.formParameters[element.parameter] = element.value;
-        }, this);
-
+    static setFormParameters(name, value) {
+        this.formParameters[name] = value;
         return this;
     }
 

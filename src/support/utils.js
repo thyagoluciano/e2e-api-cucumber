@@ -41,7 +41,7 @@ class Utils {
         const matchReg = new RegExp(`${variableChar}(.*?)${variableChar}`, 'g');
         const replaceReg = new RegExp(`${variableChar}`, 'g');
         const variaveis = (isJson(JSON.stringify(resource))) ? JSON.stringify(resource).match(matchReg) : resource.match(matchReg);
-    
+
         if (variaveis) {
             variaveis.map((value) => {
                 const name = value.replace(replaceReg, '');
@@ -49,6 +49,7 @@ class Utils {
                 resource = (isJson(JSON.stringify(resource))) ?
                     JSON.stringify(resource).replace(matchRegValue, object[name]) :
                     resource.replace(matchRegValue, object[name]);
+                return resource;
             });
         }
         return resource;
