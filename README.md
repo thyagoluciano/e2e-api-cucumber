@@ -34,15 +34,10 @@ THEN:
     response body should not contain (.*)
     response body path (.*) should be (.*)
     response body path (.*) should not be (.*)
-
-    // TODO: response body path (.*) should be of type array
-    // TODO: response body path (.*) should be of type array with length (\d+)
+    response body path (.*) should be of type array
+    response body path (.*) should be of type array with length (\d+)
     // TODO: response body should be valid according to schema file (.*)
     // TODO: response body should be valid according to openapi description (.*) in file (.*)
-    // TODO: I store the value of body path (.*) as access token
-    // TODO: I store the value of response header (.*) as (.*) in scenario scope
-    // TODO: I store the value of body path (.*) as (.*) in scenario scope
-    // TODO: value of scenario variable (.*) should be (.*)
-    // TODO: I store the value of response header (.*) as (.*) in global scope
+    I store the value of response header (.*) as (.*) in global scope
     I store the value of body path (.*) as (.*) in global scope
 ```

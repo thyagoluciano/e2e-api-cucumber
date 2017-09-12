@@ -92,53 +92,55 @@ defineSupportCode(({ Then }) => {
     });
 
     Then(/^response body path (.*) should be of type array$/, (path, callback) => {
-        // TODO: Falta implementar
-        callback();
+        const value = Utils.evaluatePath(
+            Utils.replaceVariables(path),
+            Request.getResponseObject().body
+        );
+
+        Assert.callbackWithAssertion(
+            callback,
+            Assert.getAssertionResult(
+                Array.isArray(value),
+                'array',
+                typeof value
+            )
+        );
     });
 
-    Then(/^response body path (.*) should be of type array with length (.*)$/, (path, length, callback) => {
-        // TODO: Falta implementar
-        callback();
-    });
+    Then(/^response body path (.*) should be of type array with length (.*)$/, (path, lengthParam, callback) => {
+        const value = Utils.evaluatePath(
+            Utils.replaceVariables(path),
+            Request.getResponseObject().body
+        );
+        const length = Utils.replaceVariables(lengthParam);
 
-    Then(/^response body should be valid according to schema file (.*)$/, (schemaFile, callback) => {
-        // TODO: Falta implementar
-        callback();
-    });
+        let success = false;
+        let actual = '?';
 
-    Then(/^response body should be valid according to openapi description (.*) in file (.*)$/, (definitionName, swaggerSpecFile, callback) => {
-        // TODO: Falta implementar
-        callback();
-    });
+        if (Array.isArray(value)) {
+            success = value.length.toString() === length;
+            actual = value.length;
+        }
 
-    Then(/^I store the value of body path (.*) as access token$/, (path, callback) => {
-        // TODO: Falta implementar
-        callback();
+        Assert.callbackWithAssertion(
+            callback,
+            Assert.getAssertionResult(
+                success,
+                length,
+                actual
+            )
+        );
     });
 
     Then(/^I store the value of response header (.*) as (.*) in global scope$/, (headerName, variableName, callback) => {
-        // TODO: Falta implementar
+        const value = Request.getResponseObject().heades[headerName.toLowerCase()];
+        Storage.setGlobalVariable(variableName, value);
         callback();
     });
 
     Then(/^I store the value of body path (.*) as (.*) in global scope$/, (pathParam, variableName, callback) => {
         const value = Utils.evaluatePath(pathParam, Request.getResponseObject().body);
         Storage.setGlobalVariable(variableName, value);
-        callback();
-    });
-
-    Then(/^I store the value of response header (.*) as (.*) in scenario scope$/, (name, variable, callback) => {
-        // TODO: Falta implementar
-        callback();
-    });
-
-    Then(/^I store the value of body path (.*) as (.*) in scenario scope$/, (path, variable, callback) => {
-        // TODO: Falta implementar
-        callback();
-    });
-
-    Then(/^value of scenario variable (.*) should be (.*)$/, (variableName, variableValue, callback) => {
-        // TODO: Falta implementar
         callback();
     });
 });
