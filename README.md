@@ -36,8 +36,6 @@ THEN:
     response body path (.*) should not be (.*)
     response body path (.*) should be of type array
     response body path (.*) should be of type array with length (\d+)
-    // TODO: response body should be valid according to schema file (.*)
-    // TODO: response body should be valid according to openapi description (.*) in file (.*)
     I store the value of response header (.*) as (.*) in global scope
     I store the value of body path (.*) as (.*) in global scope
 ```
