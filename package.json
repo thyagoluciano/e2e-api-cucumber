@@ -42,6 +42,7 @@
   "deprecated": false,
   "description": "Collection of utility functions and a gherkin framework for REST API integration testing based on cucumber.js",
   "devDependencies": {
+    "coveralls": "^2.13.1",
     "eslint": "^4.6.1",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
@@ -60,7 +61,8 @@
     "url": "git+https://github.com/thyagoluciano/e2e-api-cucumber.git"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "jest": {
     "collectCoverage": true
