@@ -46,7 +46,9 @@
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.3.0"
+    "eslint-plugin-react": "^7.3.0",
+    "jest": "^21.1.0",
+    "jest-cli": "^21.1.0"
   },
   "homepage": "https://github.com/thyagoluciano/e2e-api-cucumber#readme",
   "keywords": [],
@@ -58,7 +60,10 @@
     "url": "git+https://github.com/thyagoluciano/e2e-api-cucumber.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
+  },
+  "jest": {
+    "collectCoverage": true
   },
   "version": "0.0.7"
 }

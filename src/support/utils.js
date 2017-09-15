@@ -19,7 +19,7 @@ class Utils {
                 new Dom().parseFromString(content);
                 return 'xml';
             } catch (err) {
-                return null;
+                return err;
             }
         }
     }
@@ -83,8 +83,8 @@ class Utils {
         return node.firstChild.data;
     }
 
-    static pipeFileContentsToRequestBody(fileParam, done) {
-        fs.readFile(fileParam, 'utf8', done);
+    static pipeFileContentsToRequestBody(fileParam, callback) {
+        fs.readFile(fileParam, 'utf8', callback);
     }
 
     static base64Encode(str) {
