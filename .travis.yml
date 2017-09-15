@@ -1,3 +1,8 @@
 language: node_js
-nod_js:
-  - "stable"
+
+node_js:
+  - 8
+before_script:
+  - npm install
+script:
+  - npm test
