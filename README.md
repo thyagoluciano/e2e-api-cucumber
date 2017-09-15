@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/thyagoluciano/e2e-api-cucumber.svg?branch=master)](https://travis-ci.org/thyagoluciano/e2e-api-cucumber)
+[![Coverage Status](https://coveralls.io/repos/thyagoluciano/e2e-api-cucumber/badge.svg?branch=master)](https://coveralls.io/r/thyagoluciano/e2e-api-cucumber?branch=master)
 [![npm version](https://badge.fury.io/js/e2e-api-cucumber.svg)](https://badge.fury.io/js/e2e-api-cucumber)
 [![NPM](https://nodei.co/npm/e2e-api-cucumber.png)](https://nodei.co/npm/e2e-api-cucumber/)
 
