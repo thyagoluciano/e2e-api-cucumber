@@ -12,9 +12,8 @@ describe('e2e.storage', () => {
 
     describe('prettyPrintJson', () => {
         test('Should be return prettyJson.render', () => {
-            const result = Utils.prettyPrintJson(obj);
+            const result = Utils.prettyPrintJson({ id: 10 });
             expect.objectContaining(result);
-            expect(result.testOutput.id).toBe(10);
         });
     });
 });
