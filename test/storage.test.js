@@ -1,4 +1,4 @@
-const { Utils, Storage } = require('../src/support/index');
+const { Storage } = require('../src/support/index');
 
 describe('e2e.storage', () => {
     test('Add variable quantity into global storage with value 1000', () => {

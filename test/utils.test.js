@@ -9,4 +9,12 @@ describe('e2e.storage', () => {
     test('Should be convert to base64', () => {
         expect(Utils.base64Encode('password')).toBe('cGFzc3dvcmQ=');
     });
+
+    describe('prettyPrintJson', () => {
+        test('Should be return prettyJson.render', () => {
+            const result = Utils.prettyPrintJson(obj);
+            expect.objectContaining(result);
+            expect(result.testOutput.id).toBe(10);
+        });
+    });
 });
