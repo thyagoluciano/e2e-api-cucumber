@@ -31,7 +31,7 @@ defineSupportCode(({ Given }) => {
     });
 
     Given(/^I pipe contents of file (.*) to body$/, (file, callback) => {
-        Utils.pipeFileContentsToRequestBody(file, (err, data) => {
+        Utils.pipeFileContentsToRequestBody(Utils.replaceVariables(file), (err, data) => {
             if (err) throw err;
             Request.setRequestBody(Utils.replaceVariables(data));
             callback();
