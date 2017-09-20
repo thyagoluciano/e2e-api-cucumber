@@ -2,6 +2,9 @@
 [![Coverage Status](https://coveralls.io/repos/github/thyagoluciano/e2e-api-cucumber/badge.svg?branch=master)](https://coveralls.io/github/thyagoluciano/e2e-api-cucumber?branch=master)
 [![npm version](https://badge.fury.io/js/e2e-api-cucumber.svg)](https://badge.fury.io/js/e2e-api-cucumber)
 
+### 1. Example
+
+[e2e-api-cucumber](https://github.com/thyagoluciano/e2e-api-cucumber-example)
 
 ```
 GIVEN:
