@@ -16,4 +16,13 @@ describe('e2e.storage', () => {
             expect.objectContaining(result);
         });
     });
+
+    describe('replaceVariables', () => {
+        test('', () => {
+            const obj = '{"id": #id#, "nome": "#nome#"}';
+            const response = JSON.parse(Utils.replaceVariables(obj, { id: 10, nome: 'thyago' }, '#'));
+            expect(response.id).toBe(10);
+            expect(response.nome).toBe('thyago');
+        });
+    });
 });
