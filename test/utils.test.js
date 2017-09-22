@@ -1,4 +1,4 @@
-const { Utils } = require('../src/support/index');
+const { Utils, Storage } = require('../src/support/index');
 
 describe('e2e.storage', () => {
     test('should be return the json type', () => {
@@ -21,6 +21,21 @@ describe('e2e.storage', () => {
         test('', () => {
             const obj = '{"id": #id#, "nome": "#nome#"}';
             const response = JSON.parse(Utils.replaceVariables(obj, { id: 10, nome: 'thyago' }, '#'));
+            expect(response.id).toBe(10);
+            expect(response.nome).toBe('thyago');
+        });
+        test('', () => {
+            const obj = '{"id": `id`, "nome": "`nome`"}';
+            const response = JSON.parse(Utils.replaceVariables(obj, { id: 10, nome: 'thyago' }));
+            expect(response.id).toBe(10);
+            expect(response.nome).toBe('thyago');
+        });
+
+        test('', () => {
+            Storage.setGlobalVariable('id', 10);
+            Storage.setGlobalVariable('nome', 'thyago');
+            const obj = '{"id": `id`, "nome": "`nome`"}';
+            const response = JSON.parse(Utils.replaceVariables(obj));
             expect(response.id).toBe(10);
             expect(response.nome).toBe('thyago');
         });
