@@ -39,5 +39,13 @@ describe('e2e.storage', () => {
             expect(response.id).toBe(10);
             expect(response.nome).toBe('thyago');
         });
+
+        test('', () => {
+            Storage.setGlobalVariable('id', 10);
+            Storage.setGlobalVariable('nome', 'thyago');
+            const obj = { id: '`id`', nome: '`nome`' };
+            const response = Utils.replaceVariables(obj);
+            expect(response).toBe('{"id":"10","nome":"thyago"}');
+        });
     });
 });
