@@ -10,6 +10,7 @@ class Request {
         this.requestBody = '';
         this.queryParameters = {};
         this.formParameters = {};
+        this.uploadParameters = null;
         this.debug = false;
 
         return this;
@@ -63,6 +64,10 @@ class Request {
         return this;
     }
 
+    static uploadRequest(uploadObject) {
+        this.uploadParameters = uploadObject
+    }
+
     static getHeader() {
         return this.headers;
     }
@@ -82,8 +87,14 @@ class Request {
 
         if (this.requestBody.length > 0) {
             options.body = this.requestBody;
-        } else if (Object.keys(this.formParameters).length > 0) {
+        } 
+        
+        if (Object.keys(this.formParameters).length > 0) {
             options.form = this.formParameters;
+        }
+
+        if (this.uploadParameters !== null) {
+            options.formData = this.uploadParameters
         }
 
         const cookieJar = request.jar();
