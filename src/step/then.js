@@ -133,7 +133,7 @@ defineSupportCode(({ Then }) => {
     });
 
     Then(/^I store the value of response header (.*) as (.*) in global scope$/, (headerName, variableName, callback) => {
-        const value = Request.getResponseObject().heades[headerName.toLowerCase()];
+        const value = Request.getResponseObject().headers[headerName.toLowerCase()];
         Storage.setGlobalVariable(variableName, value);
         callback();
     });
