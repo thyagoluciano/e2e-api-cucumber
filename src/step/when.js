@@ -2,7 +2,7 @@ const { Request, Storage, Utils } = require('../support/index');
 const { defineSupportCode } = require('cucumber');
 
 defineSupportCode(({ When }) => {
-    When(/^I GET (.*)$/, (resourceParam, callback) => {
+    When(/^(?:I GET|fazer um GET) (.*)$/, (resourceParam, callback) => {
         const resource = Utils.replaceVariables(resourceParam, Storage.getGlobalVariable());
         Request.sendRequest('GET', resource, (error) => {
             if (error) callback(new Error(error));
@@ -10,7 +10,7 @@ defineSupportCode(({ When }) => {
         });
     });
 
-    When(/^I POST to (.*)$/, (resourceParam, callback) => {
+    When(/^(?:I POST to|fazer um POST) (.*)$/, (resourceParam, callback) => {
         const resource = Utils.replaceVariables(resourceParam, Storage.getGlobalVariable());
         Request.sendRequest('POST', resource, (error) => {
             if (error) callback(new Error(error));
@@ -18,7 +18,7 @@ defineSupportCode(({ When }) => {
         });
     });
 
-    When(/^I PUT (.*)$/, (resourceParam, callback) => {
+    When(/^(?:I PUT|fazer um PUT) (.*)$/, (resourceParam, callback) => {
         const resource = Utils.replaceVariables(resourceParam, Storage.getGlobalVariable());
         Request.sendRequest('PUT', resource, (error) => {
             if (error) callback(new Error(error));
@@ -26,7 +26,7 @@ defineSupportCode(({ When }) => {
         });
     });
 
-    When(/^I DELETE (.*)$/, (resourceParam, callback) => {
+    When(/^(?:I DELETE|fazer um DELETE) (.*)$/, (resourceParam, callback) => {
         const resource = Utils.replaceVariables(resourceParam, Storage.getGlobalVariable());
         Request.sendRequest('DELETE', resource, (error) => {
             if (error) callback(new Error(error));
@@ -34,7 +34,7 @@ defineSupportCode(({ When }) => {
         });
     });
 
-    When(/^I PATCH (.*)$/, (resourceParam, callback) => {
+    When(/^(?:I PATCH|fazer um PATCH) (.*)$/, (resourceParam, callback) => {
         const resource = Utils.replaceVariables(resourceParam, Storage.getGlobalVariable());
         Request.sendRequest('PATCH', resource, (error) => {
             if (error) callback(new Error(error));
@@ -42,7 +42,7 @@ defineSupportCode(({ When }) => {
         });
     });
 
-    When(/^I request OPTIONS for (.*)$/, (resourceParam, callback) => {
+    When(/^(:?I request OPTIONS for|solicitar um OPTIONS) (.*)$/, (resourceParam, callback) => {
         const resource = Utils.replaceVariables(resourceParam, Storage.getGlobalVariable());
         Request.sendRequest('OPTIONS', resource, (error) => {
             if (error) callback(new Error(error));
@@ -50,7 +50,7 @@ defineSupportCode(({ When }) => {
         });
     });
 
-    When(/^I set bearer token$/, (accessToken, callback) => {
+    When(/^(?:I set bearer token|definir um bearer token)$/, (accessToken, callback) => {
         Request.setRequestHeader('Authorization', `Bearer ${accessToken}`);
         callback();
     });
