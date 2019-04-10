@@ -22,10 +22,20 @@
   "_shasum": "6e082d3a63469cbf5752c140bf69a481f6635a82",
   "_spec": "e2e-api-cucumber@0.0.2",
   "_where": "/Volumes/DATA/Development/zup/labs/copia-e2e-tests",
-  "author": {
-    "name": "Thyago Luciano",
-    "email": "thyagoluciano@gmail.com"
-  },
+  "authors": [
+    {
+      "name": "Thyago Luciano",
+      "email": "thyagoluciano@gmail.com",
+      "url": "https://github.com/thyagoluciano"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Leticia Lima", 
+      "email": "leticia.alcantaralima@gmail.com",
+      "url": "https://github.com/leticiaalcantaralima"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/thyagoluciano/e2e-api-cucumber/issues"
   },
