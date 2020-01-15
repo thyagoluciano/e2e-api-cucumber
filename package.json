@@ -31,7 +31,7 @@
   ],
   "contributors": [
     {
-      "name": "Leticia Lima", 
+      "name": "Leticia Lima",
       "email": "leticia.alcantaralima@gmail.com",
       "url": "https://github.com/leticiaalcantaralima"
     }
@@ -47,7 +47,8 @@
     "prettyjson": "^1.2.1",
     "request": "^2.81.0",
     "xmldom": "^0.1.27",
-    "xpath.js": "^1.0.7"
+    "xpath.js": "^1.0.7",
+    "snyk": "^1.189.0"
   },
   "deprecated": false,
   "description": "Collection of utility functions and a gherkin framework for REST API integration testing based on cucumber.js",
@@ -72,10 +73,13 @@
   },
   "scripts": {
     "test": "jest",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "jest": {
     "collectCoverage": true
   },
-  "version": "0.1.1"
+  "version": "0.1.1",
+  "snyk": true
 }
