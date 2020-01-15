@@ -83,6 +83,7 @@ class Request {
             method,
             headers: this.headers,
             qs: this.queryParameters,
+            gzip: true,
         };
 
         if (this.requestBody.length > 0) {
