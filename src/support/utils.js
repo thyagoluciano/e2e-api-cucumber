@@ -51,6 +51,7 @@ class Utils {
                     resource.replace(matchRegValue, object[name]);
                 return resource;
             });
+            Storage.setGlobalVariable("requestJson", resource);
         }
         return resource;
     }
