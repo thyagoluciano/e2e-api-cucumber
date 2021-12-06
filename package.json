@@ -48,7 +48,7 @@
     "request": "^2.81.0",
     "xmldom": "^0.1.27",
     "xpath.js": "^1.0.7",
-    "snyk": "^1.189.0"
+    "snyk": "^1.316.1"
   },
   "deprecated": false,
   "description": "Collection of utility functions and a gherkin framework for REST API integration testing based on cucumber.js",
