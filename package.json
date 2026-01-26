@@ -42,7 +42,7 @@
   "bundleDependencies": false,
   "dependencies": {
     "JSONPath": "^0.11.2",
-    "cucumber": "^3.0.1",
+    "cucumber": "^6.0.7",
     "is-json": "^2.0.1",
     "prettyjson": "^1.2.1",
     "request": "^2.81.0",
